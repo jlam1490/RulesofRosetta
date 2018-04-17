@@ -203,7 +203,7 @@ while not game.over:
     game.drawBackground()
     continu.draw()
     game.drawText("You are a lost spirit with no knowledge of your past", 150, 200,fo)
-    game.drawText("You wake up what seems to be a manshion",150,225,fo)
+    game.drawText("You wake up what seems to be a mansion",150,225,fo)
     game.drawText("You're able to move using the WASD keys",150,250,fo)
     game.drawText("Entering corriders you wander this mysterious place", 150, 275,fo)
     game.drawText("By solving puzzles you get closer knowing the reason",150,300,fo)
@@ -278,11 +278,11 @@ while not game.over:
             for times in range(50):
                 rings[times].move(True)
                 if rings[times].collidedWith(mouse) and mouse.LeftClick:
-                    coin.play()
+                    coins.play()
                     rings[times].visible= False
                     game.score += 1
 
-            if game.score == 1:
+            if game.score == 50:
                 game.over = True
             
             game.displayScore()
@@ -389,30 +389,30 @@ while not game.over:
             main.draw()
             controls()
             
-            for index in range(1):
+            for index in range(50):
                 coin[index].move(True)
                 if coin[index].collidedWith(main):
-                    coin.play()
+                    coins.play()
                     coin[index].visible = False
                     coinscore += 1
                 if coin[index].collidedWith(rightward):
-                    coin.play()
+                    coins.play()
                     coin[index].visible = False
                     coinscore += 1
                 if coin[index].collidedWith(leftward):
-                    coin.play()
+                    coins.play()
                     coin[index].visible = False
                     coinscore += 1
                 if coin[index].collidedWith(foward):
-                    coin.play()
+                    coins.play()
                     coin[index].visible = False
                     coinscore += 1
                 if coin[index].collidedWith(backward):
-                    coin.play()
+                    coins.play()
                     coin[index].visible = False
                     coinscore += 1
 
-            if coinscore == 1:
+            if coinscore == 50:
                 game.over = True
             
             for index in range(5):
@@ -507,6 +507,7 @@ while not game.over:
         game.update(30)
         time -= 1
         continue
+    controls()
     
     if main.collidedWith(girl):
         game.drawText("Ha...HAAHAAA, I told you...there is no such thing as a hero", girl.x-125, girl.y, f4)
@@ -524,8 +525,6 @@ while not game.over:
     if main.y < 350 and main.x > 700:
         web.play()
         game.over = True
-        
-    controls()
 
     game.update(30)
 
@@ -534,7 +533,7 @@ while not game.over:
 game.over = False
 backward.moveTo(400, 500)
 backward.resizeBy(-50)
-backward.setSpeed(5, 0)
+backward.visible = True
 time = 50
 big = 40
 while not game.over:
@@ -549,7 +548,6 @@ while not game.over:
         backward.y += 2
         
     if time > 1:
-        print(time, big)
         time -= 1
         big -= 1
         game.update(15)
