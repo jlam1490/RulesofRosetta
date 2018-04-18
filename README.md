@@ -6,7 +6,7 @@
 <a href="https://www.youtube.com/watch?v=_GikMdhAhv0">How To Install</a>
 
 <img src="https://github.com/jlam1490/RulesofRosetta/blob/master/ror%20ss4.PNG">
-
+<img src="">
 <p>
         The protagonist starts off in a room, feels as if he/she were knocked out. The atmosphere starts creepy as the protagonist has no understanding of where he/she is at the moment. The protagonist wonders around looking for clues of his memories and a way out. Eventually the protagonist finds a girl, she explains to the protagonist what he/she should do without telling the protagonist the leading events up to the present time. The protagonist’s main goal is to escape what seems to an abandoned mansion. Throughout the story the main character must solve puzzles collect items and in the order the player does this will affect the ending of the game. As the character begins to learn more about the reason he’s here he hears whispers and  witnesses paranormal activity. Continuing on the masked beast reveals itself chasing in agony and pain towards the protagonist while you, the main character must flee for survival. The fight of death and alive combined together in one story unfolds.
 </p>
