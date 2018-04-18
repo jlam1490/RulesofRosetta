@@ -6,7 +6,7 @@
 <a href="https://www.youtube.com/watch?v=_GikMdhAhv0">How To Install</a>
 
 <img src="https://github.com/jlam1490/RulesofRosetta/blob/master/ror%20ss4.PNG">
-<img src="">
+<img src="https://github.com/jlam1490/RulesofRosetta/blob/master/ror%20ss3.PNG">
 <img src="">
 <img src="">
 <img src="">
