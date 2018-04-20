@@ -80,6 +80,7 @@ door = Sound("door.wav", 1)
 walk = Sound("walk.wav", 2)
 web = Sound("web.wav", 3)
 coins = Sound("coins.wav", 4)
+scream = Sound("Female Scream-SoundBible.com-237334261.wav", 5)
 
 #Fonts
 f = Font(white, 14, black , "Comic Sans MS")
@@ -142,6 +143,9 @@ skull = Image("New Piskel.gif",game)
 skull.resizeBy(500)
 skull.moveTo(400,250)
 
+ex = Image("exit.jpg", game)
+ex.resizeBy(-85)
+ex.moveTo(600, 100)
 #List
 rings = []
 
@@ -239,7 +243,7 @@ while not game.over:
         game.drawText("I promise, it will take you somewhere magical...HeeHee. Remember, you ", tbox.x - 250, tbox.y+25, f)
         game.drawText("only have one shot at this!!", tbox.x - 250, tbox.y+ 50, f)
 
-    if main.y < 100 and main.x > 200 and main.x < 400:
+    if main.y < 101 and main.x > 200 and main.x < 400:
         web.play()
         game.over = True
         
@@ -426,8 +430,7 @@ while not game.over:
                         skull.draw()
                         game.update(30)    
                     game.quit()
-            game.update(30)
-        
+
     controls()
     
     game.update(30)
@@ -495,6 +498,7 @@ while not game.over:
     game.processInput()
     game.setBackground(bk3)
     game.drawBackground()
+    ex.draw()
     main.draw()
     girl.moveTo(500, 650)
     girl.visible = True
