@@ -12,14 +12,15 @@ def controls():
     foward.moveTo(main.x,main.y)
     foward.visible = False
         
-    if keys.Pressed[K_d] and not main.collidedWith(girl):
+    if keys.Pressed[K_d] and not main.collidedWith(girl) or keys.Pressed[K_RIGHT]:
         walk.play()
         rightward.visible = True
         rightward.draw()
         rightward.x += 4
         main.visible = False
         main.moveTo(rightward.x, rightward.y)
-    if keys.Pressed[K_s] and not main.collidedWith(girl):
+        
+    if keys.Pressed[K_s] and not main.collidedWith(girl) or keys.Pressed[K_DOWN]:
         walk.play()
         backward.visible = True
         backward.draw()
@@ -27,14 +28,15 @@ def controls():
         main.visible = False
         main.moveTo(backward.x, backward.y)
 
-    if keys.Pressed[K_w] and not main.collidedWith(girl):
+    if keys.Pressed[K_w] and not main.collidedWith(girl) or keys.Pressed[K_UP]:
         walk.play()
         foward.visible = True
         foward.draw()
         foward.y -= 4
         main.visible = False
         main.moveTo(foward.x, foward.y)
-    if keys.Pressed[K_a] and not main.collidedWith(girl):
+        
+    if keys.Pressed[K_a] and not main.collidedWith(girl) or keys.Pressed[K_LEFT]:
         walk.play()
         leftward.visible = True
         leftward.draw()
@@ -43,7 +45,7 @@ def controls():
         main.moveTo(leftward.x, leftward.y)
     
 
-    if not keys.Pressed[K_d] and not keys.Pressed[K_s] and not keys.Pressed[K_w] and not keys.Pressed[K_a]:
+    if not keys.Pressed[K_d] and not keys.Pressed[K_s] and not keys.Pressed[K_w] and not keys.Pressed[K_a] and not keys.Pressed[K_LEFT] and not keys.Pressed[K_RIGHT] and not keys.Pressed[K_UP] and not keys.Pressed[K_DOWN]:
         main.visible = True
 
     
@@ -150,10 +152,10 @@ ex.moveTo(600, 100)
 #List
 rings = []
 
-for times in range(50):
+for times in range(10):
     rings.append( Animation("coin.png", 21, game, 2048/16  , 256/2))
 
-for times in range(50):
+for times in range(10):
     rings[times].moveTo(randint(1,800), randint(1,800))
     s = randint(5, 10)
     a = randint(0,360)
@@ -161,10 +163,10 @@ for times in range(50):
 
 #Coin setup
 coin = []
-for index in range(50):
+for index in range(25):
     coin.append(Animation("coin.png",21,game, 2048/16, 256/2,2))
     coin[index].resizeBy(-75)
-for index in range(50):
+for index in range(25):
     coin[index].moveTo(randint(1,800), randint(1,800))
     s = randint(5,10)
 
@@ -221,13 +223,15 @@ while not game.over:
 
 #Start Room
 game.over = False
-time = 120
+time = 200
 while not game.over:
     game.processInput()
     game.setBackground(bk4)
     game.drawBackground()
     man.draw()
     main.draw()
+    if tbox.collidedWith(mouse) and mouse.LeftClick:
+        time = 0
     if time > 1:
         tbox.draw()
         game.drawText("Me: Ugh, my head! Where am I?? Wait...Who am I? Why can't I remember",tbox.x - 250, tbox.y, f)
@@ -236,7 +240,6 @@ while not game.over:
         game.update(30)
         time -= 1
         continue
-    
     controls()
     
     if main.collidedWith(man, "circle"):
@@ -253,13 +256,12 @@ while not game.over:
 
 #Room 1 / Puzzle 1
 game.over = False
-time = 90
+time = 180
 main.moveTo(610, 600)
 while not game.over:
     game.processInput()
     game.setBackground(bk2)
     game.drawBackground()
-
     if time > 1:
         main.visible = True
         main.draw()
@@ -276,31 +278,42 @@ while not game.over:
         game.drawText("It's useless it won't budge.", main.x, main.y, f)
         
     if main.y < 210 and main.x < 250:
+        game.time = 40
         while not game.over:
             game.processInput()
 
             game.clearBackground()
     
-            for times in range(50):
+            for times in range(10):
                 rings[times].move(True)
                 if rings[times].collidedWith(mouse) and mouse.LeftClick:
                     coins.play()
                     rings[times].visible= False
                     game.score += 1
 
-            if game.score == 50:
+            if game.score == 10:
                 game.over = True
+
+            if game.time < 1:
+                while not game.over:
+                    game.processInput()
+                    game.clearBackground()
+                    bk9.draw()
+                    gameover.draw()
+                    skull.draw()
+                    game.update(30)    
+                game.quit()
             
             game.displayScore()
-    
+            game.displayTime(200, 5)
             game.update(60)
         
     game.update(30)
 
 #Room 1(2) 
 game.over = False
-time = 60
-time2 = 60
+time = 120
+time2 = 120
 while not game.over:
     game.processInput()
     game.setBackground(bk2)
@@ -314,7 +327,6 @@ while not game.over:
         game.update(30)
         time -= 1
         continue
-    
     
     if time2 > 1:
         main.visible = True
@@ -375,8 +387,7 @@ while not game.over:
 #Room 2 / Puzzle 2
 game.over = False
 main.moveTo(700, 420)
-time = 60
-coinscore = 0
+coinscore = 9
 while not game.over:
     game.processInput()
     game.setBackground(bk)
@@ -389,13 +400,14 @@ while not game.over:
     if main.x == 200:
         main.moveTo(600,600)
         game.setBackground(bk8)
+        game.time = 40
         while not game.over:
             game.processInput()
             game.drawBackground()
             main.draw()
             controls()
             
-            for index in range(50):
+            for index in range(25):
                 coin[index].move(True)
                 if coin[index].collidedWith(main):
                     coins.play()
@@ -418,12 +430,14 @@ while not game.over:
                     coin[index].visible = False
                     coinscore += 1
 
-            if coinscore == 50:
+            if coinscore == 10:
                 game.over = True
-            
+                
+            game.drawText("coinscore: " + str(coinscore), 0,5 )
+            game.displayTime(200, 5)
             for index in range(5):
                 roses[index].move(True)
-                if main.collidedWith(roses[index], "circle") or foward.collidedWith(roses[index], "circle") or rightward.collidedWith(roses[index], "circle") or leftward.collidedWith(roses[index], "circle") or backward.collidedWith(roses[index], "circle"):
+                if main.collidedWith(roses[index], "circle") or foward.collidedWith(roses[index], "circle") or rightward.collidedWith(roses[index], "circle") or leftward.collidedWith(roses[index], "circle") or backward.collidedWith(roses[index], "circle") or game.time == 0:
                     while not game.over:
                         game.processInput()
                         game.clearBackground()
@@ -432,6 +446,7 @@ while not game.over:
                         skull.draw()
                         game.update(30)    
                     game.quit()
+            game.update(30)
 
     controls()
     
@@ -495,7 +510,7 @@ game.stopMusic()
 game.over = False
 ghost.moveTo(400, 100)
 main.moveTo(50, 400)
-time = 60
+time = 90
 ghostTime = 30
 screamStatus = False
 while not game.over:
