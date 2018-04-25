@@ -81,6 +81,7 @@ walk = Sound("walk.wav", 2)
 web = Sound("web.wav", 3)
 coins = Sound("coins.wav", 4)
 scream = Sound("Female Scream-SoundBible.com-237334261.wav", 5)
+game.setMusic("Shadowlands 2 - Bridge.wav")
 
 #Fonts
 f = Font(white, 14, black , "Comic Sans MS")
@@ -183,6 +184,7 @@ for index in range(5):
     roses[index].moveTo(200,200)
 
 #Start Screen
+game.playMusic()
 while not game.over:
     game.processInput()
     bk5.draw()
@@ -489,11 +491,13 @@ while not game.over:
     game.update(30)
 
 #End Room
+game.stopMusic()
 game.over = False
 ghost.moveTo(400, 100)
 main.moveTo(50, 400)
 time = 60
 ghostTime = 30
+screamStatus = False
 while not game.over:
     game.processInput()
     game.setBackground(bk3)
@@ -525,6 +529,9 @@ while not game.over:
         
         if ghost.collidedWith(main):
             jumpscare1.draw()
+            if screamStatus == False:
+                scream.play()
+                screamStatus = True
     
     if main.y < 350 and main.x > 700:
         web.play()
