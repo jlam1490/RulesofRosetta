@@ -322,8 +322,8 @@ while not game.over:
     if time > 1:
         main.visible = True
         main.draw()
-        game.drawText("HAHAAH!! Sometimes its better to save yourself",200 ,400 , f3)
-        game.drawText("than others. You can't always play hero...",200 ,425 , f3)
+        game.drawText("HAHAAH!! Sometimes its better to save yourself",175 ,400 , f3)
+        game.drawText("than others. You can't always play hero...",175 ,425 , f3)
         game.update(30)
         time -= 1
         continue
@@ -387,7 +387,8 @@ while not game.over:
 #Room 2 / Puzzle 2
 game.over = False
 main.moveTo(700, 420)
-coinscore = 9
+time = 180
+coinscore = 0
 while not game.over:
     game.processInput()
     game.setBackground(bk)
@@ -400,11 +401,17 @@ while not game.over:
     if main.x == 200:
         main.moveTo(600,600)
         game.setBackground(bk8)
-        game.time = 40
+        game.time = 60
         while not game.over:
             game.processInput()
             game.drawBackground()
             main.draw()
+            if time > 1:
+                game.drawText("Avoid the Roses and try to collect the coins simultaneously",100 , 400, fo)
+                game.update(30)
+                time -= 1
+                continue
+            
             controls()
             
             for index in range(25):
@@ -454,13 +461,20 @@ while not game.over:
 #Room 2(2)
 game.over = False
 main.moveTo(200, 400)
+time = 120
 while not game.over:
     game.processInput()
     game.setBackground(bk)
     game.drawBackground()
     main.draw()
+    if time > 1:
+        game.drawText("You've completed the second puzzle Rose...", 200, 450, f3)
+        game.drawText("I am expecting to see you soon", 200, 475, f3)
+        game.update(30)
+        time -= 1
+        continue 
     controls()
-
+    
     if main.x > 700:
         web.play()
         game.over = True
